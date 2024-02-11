@@ -13,7 +13,10 @@ import {
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { MantineInferencer } from "@refinedev/inferencer/mantine";
+import { BlogPostList } from "./pages/blog-posts/list";
+import { BlogPostEdit } from "./pages/blog-posts/edit";
+import { BlogPostShow } from "./pages/blog-posts/show";
+import { BlogPostCreate } from "./pages/blog-posts/create";
 
 const App = () => {
   return (
@@ -36,6 +39,9 @@ const App = () => {
                 show: "/blog-posts/show/:id",
                 create: "/blog-posts/create",
                 edit: "/blog-posts/edit/:id",
+                meta: {
+                  canDelete: true,
+                },
               },
             ]}
             options={{
@@ -56,10 +62,10 @@ const App = () => {
                   element={<NavigateToResource resource="blog_posts" />}
                 />
                 <Route path="blog-posts">
-                  <Route index element={<MantineInferencer />} />
-                  <Route path="show/:id" element={<MantineInferencer />} />
-                  <Route path="edit/:id" element={<MantineInferencer />} />
-                  <Route path="create" element={<MantineInferencer />} />
+                  <Route index element={<BlogPostList />} />
+                  <Route path="show/:id" element={<BlogPostShow />} />
+                  <Route path="edit/:id" element={<BlogPostEdit />} />
+                  <Route path="create" element={<BlogPostCreate />} />
                 </Route>
                 <Route path="*" element={<ErrorComponent />} />
               </Route>
